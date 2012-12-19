@@ -1,0 +1,85 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.dirgraphprinter</groupId>
+  <artifactId>DirectoryGraphPrinter</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>DirectoryGraphPrinter</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+  
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.dirgraphprinter.DirectoryGraphPrinterMain</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<plugin>
+	            <groupId>com.akathist.maven.plugins.launch4j</groupId>
+	            <artifactId>launch4j-maven-plugin</artifactId>
+	            <version>1.5.2</version>
+	            <executions>
+	                <execution>
+	                    <id>l4j-clui</id>
+	                    <phase>package</phase>
+	                    <goals>
+	                        <goal>launch4j</goal>
+	                    </goals>
+	                    <configuration>
+	                        <headerType>gui</headerType>
+	                        <jar>target/DirectoryGraphPrinter-0.0.1-SNAPSHOT.jar</jar>
+	                        <outfile>target/DirectoryGraphPrinter-0.0.1-SNAPSHOT.exe</outfile>
+	                        <downloadUrl>http://java.com/download</downloadUrl>
+	                        <classPath>
+	                            <mainClass>com.dirgraphprinter.AppStart</mainClass>
+	                            <preCp>anything</preCp>
+	                        </classPath>
+	                        <icon>src/main/resources/icon/application.ico</icon>
+	                        <jre>
+	                            <minVersion>1.6.0</minVersion>
+	                            <jdkPreference>preferJre</jdkPreference>
+	                        </jre>
+	                        <versionInfo>
+	                            <fileVersion>1.0.0.0</fileVersion>
+	                            <txtFileVersion>${project.version}</txtFileVersion>
+	                            <fileDescription>${project.name}</fileDescription>
+	                            <copyright>2012 Adrien Berthou</copyright>
+	                            <productVersion>1.0.0.0</productVersion>
+	                            <txtProductVersion>1.0.0.0</txtProductVersion>
+	                            <productName>${project.name}</productName>
+	                            <companyName>Adrien Berthou</companyName>
+	                            <internalName>${project.name}</internalName>
+	                            <originalFilename>${project.name}.exe</originalFilename>
+	                        </versionInfo>
+	                    </configuration>
+	                </execution>
+	            </executions>
+	        </plugin>
+
+		</plugins>
+	</build>
+
+</project>
